@@ -1,0 +1,91 @@
+*****Welcome to Sorter.*****
+1. Selection
+2. Bubble
+3. Insertion
+4. Merge
+5. Heap
+6. Quick
+7. Exit
+Which method would you like to use (Example -: Bubble): Selection
+Raise 10 to what power for array size: 5
+
+Selection Sort
+	n    Time(ms)   Comparison       Moves
+       10          80           45          15
+      100        1005         4950         288
+     1000       22603       499500        2970
+    10000      245695     49995000       29970
+   100000    14866700   4999950000      299985
+-----------------------------------------------
+  Average     3027216   1010089899       66645
+
+Which method would you like to use (Example -: Bubble): Bubble
+Raise 10 to what power for array size: 5
+
+Bubble Sort
+	n    Time(ms)   Comparison       Moves
+       10          75           90          57
+      100        3071         9900        7575
+     1000       41957       999000      752769
+    10000      827617     99990000    75456924
+   100000    72817813   9999900000  7512269970
+-----------------------------------------------
+  Average    14738106   2020179798  1517697459
+
+Which method would you like to use (Example -: Bubble): Insertion
+Raise 10 to what power for array size: 5
+
+Insertion Sort
+	n    Time(ms)   Comparison       Moves
+       10          57           22          31
+      100         804         2464        2563
+     1000       29365       245081      246080
+    10000      241735     25084044    25094043
+   100000    10450369   2493064151  2493164150
+-----------------------------------------------
+  Average     2144466    503679152   503701373
+
+Which method would you like to use (Example -: Bubble): Merge
+Raise 10 to what power for array size: 6
+
+Merge Sort
+	n    Time(ms)   Comparison       Moves
+       10          92           13          26
+      100         366          292         611
+     1000        2904         4393        9389
+    10000        9299        61373      128174
+   100000       61392       776465     1613722
+  1000000      537798      9395691    19345241
+-----------------------------------------------
+  Average      101975      1706371     3516193
+
+Which method would you like to use (Example -: Bubble): Heap
+Raise 10 to what power for array size: 6
+
+Heap Sort
+	n    Time(ms)   Comparison       Moves
+       10         155           35          51
+      100         256          324         426
+     1000        2835         2600        4230
+    10000        4428        27451       41829
+   100000       22653       337324      417771
+  1000000       60241      2581385     4179447
+-----------------------------------------------
+  Average       15094       491519      773959
+
+Which method would you like to use (Example -: Bubble): Quick
+Raise 10 to what power for array size: 6
+
+Quick Sort
+	n    Time(ms)   Comparison       Moves
+       10         371           13          87
+      100         393          396        1572
+     1000        4007         5394       20322
+    10000        7980        79283      278199
+   100000       63786      1108478     3731724
+  1000000      467370     12373622    41184510
+-----------------------------------------------
+  Average       90651      2261197     7536069
+
+Which method would you like to use (Example -: Bubble): Exit
+Raise 10 to what power for array size: 0

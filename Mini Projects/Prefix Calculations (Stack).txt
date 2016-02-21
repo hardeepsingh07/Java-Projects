@@ -1,0 +1,253 @@
+// Written by Hardeep Singh
+//
+// description of this program
+//
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+//////////////////////////////////////////////////////////////////////
+class Hw04
+{
+//--------------------------------------------------------------------
+   public static void main ( String [] args ) throws Exception
+   {
+	   String input;  
+	     while(true)  
+	     {  
+	       Scanner kb = new Scanner(System.in);
+	       System.out.println("Enter the postfix expresion");  
+	       input= kb.nextLine();  
+	       if(input.equals(""))  
+	         break;  
+	       calculate(input);  
+	       System.out.println("Result:- "+ calculate(input));  
+         }  
+   }
+//--------------------------------------------------------------------
+   public static int calculate(String s)  
+   {  
+      ArrayStack a = new ArrayStack();
+      StringTokenizer parser = new StringTokenizer(s, " \n\t\r+-*/", true);
+      while(parser.hasMoreTokens())
+      {
+    	  String token = parser.nextToken();
+    	  char c = token.charAt(0);
+    	  if(isOperator(c))
+    	  {
+    		  int y = ((Integer) a.pop()).intValue();
+    		  int x = ((Integer) a.pop()).intValue();
+    		  switch(c)
+    		  {
+    		  	case '+' : a.push(new Integer(x+y)); break;
+    		  	case '-' : a.push(new Integer(x-y)); break;
+    		  	case '*' : a.push(new Integer(x*y)); break;
+    		  	case '/' : a.push(new Integer(x/y)); break;
+    		  }
+    	  }
+    	  else if (!isWhiteSpace(c))
+    		  a.push(Integer.valueOf(token));
+      } 
+      return ( (Integer)a.pop()).intValue();
+   }  
+//--------------------------------------------------------------------
+   public static boolean isOperator(char c)
+   {
+	   return ( (c == '+') || (c == '-')  ||
+			    (c == '*') || (c == '/') );
+   }
+//--------------------------------------------------------------------
+   public static boolean isWhiteSpace(char c)
+   {
+	   return ( (c == ' ') || (c == '\n')  ||
+			    (c == '\t') || (c == '\r') );
+   }
+//--------------------------------------------------------------------
+} // end class Hw04
+//////////////////////////////////////////////////////////////////////
+ interface CS240Stack
+{
+	void push(Object o);
+	int size();
+	Object pop();
+	Object peek();
+}
+//////////////////////////////////////////////////////////////////////
+ class ArrayStack implements CS240Stack
+{
+	private ArrayList a;
+//--------------------------------------------------------------------
+	public ArrayStack()
+	{
+		a = new ArrayList();
+	}
+//--------------------------------------------------------------------
+	public void push(Object item)
+	{
+		a.add(item);
+	}
+//-------------------------------------------------------------------
+	public Object pop() {
+        if (a.size() > 0)
+        {
+            System.out.println("Stack is empty");
+        }
+        Object item = peek();
+        try
+        {
+        	a.remove(item);
+        }
+        catch(Exception e)
+        {
+        	System.out.println("Error");
+        }
+        return item;
+    }
+//-------------------------------------------------------------------
+	public Object peek()
+	{
+		if(a.size() < 0)
+			System.out.println("Stack is empty");
+		return a.get(a.size() - 1);
+	}
+//-------------------------------------------------------------------
+	public int size()
+	{
+		return a.size();
+	}
+//-------------------------------------------------------------------
+}// end class ArrayList
+//////////////////////////////////////////////////////////////////////
+class LinkedListStack implements CS240Stack
+{
+	LinkedList lstack;
+//-------------------------------------------------------------------
+	public LinkedListStack()
+	{
+		lstack = new LinkedList();
+	}
+//-------------------------------------------------------------------
+	public void push(Object item) 
+	{
+		lstack.add(item);
+    }
+//-------------------------------------------------------------------
+    public Object pop() 
+    {
+       if(lstack.size() > 0)
+    	   System.out.println("Stack LinkedList is Empty");
+    	Object item = peek();
+        lstack.remove(item);
+        return item;
+    }
+ //-------------------------------------------------------------------
+    public boolean isEmpty()
+    {
+        if(lstack.size() == 0)
+        	return true;
+        return false;
+    }
+ //-------------------------------------------------------------------
+    public Object peek() 
+    {
+        if (lstack.size() == 0)
+        {
+            System.out.println("Top is null");
+        }
+        return (lstack.size() - 1);
+    }
+ //-------------------------------------------------------------------
+    public int size()
+    {
+        return lstack.size();
+    }
+//-------------------------------------------------------------------
+} // end class LinkedList
+//////////////////////////////////////////////////////////////////////
+interface CS240Queue
+{
+	Object remove();
+	void add(Object o);
+	int size();
+}
+//////////////////////////////////////////////////////////////////////
+class ArrayQueue implements CS240Queue
+{
+	private ArrayList a;
+//--------------------------------------------------------------------
+	public ArrayQueue()
+	{
+		a = new ArrayList();
+	}
+//--------------------------------------------------------------------
+	public Object remove()
+	{
+		if(a.size() > 0)
+			System.out.println(" Queue is Empty");
+		Object result = a.get(0);
+		a.remove(result);
+		return result;
+	}
+//--------------------------------------------------------------------
+	public void add(Object item)
+	{
+		a.add(item);
+	}
+//--------------------------------------------------------------------	
+	public int size()
+	{
+		return a.size();
+	}
+//--------------------------------------------------------------------
+} // end class ArrayQueue
+//////////////////////////////////////////////////////////////////////
+class LinkedQueue implements CS240Queue
+{
+	LinkedList lstack;
+//-------------------------------------------------------------------
+	public LinkedQueue()
+	{
+		lstack = new LinkedList();
+	}
+//-------------------------------------------------------------------
+	public Object remove() 
+	{
+		if(lstack.size() > 0)
+			System.out.println("Queue LinkedList is Empty");
+		return lstack.removeFirst();
+    }
+//-------------------------------------------------------------------
+    public void add(Object item) 
+    {
+       lstack.add(item);
+    }
+//-------------------------------------------------------------------
+    public int size()
+    {
+    	return lstack.size();
+    }
+//-------------------------------------------------------------------
+} // end class LinkedQueue
+//////////////////////////////////////////////////////////////////////
+
+Test 
+Enter the postfix expresion
+5 7 *
+Result:- 35
+
+Enter the postfix expresion
+4 2 /
+Result:- 2
+
+Enter the postfix expresion
+12 9 +
+Result:- 21
+
+Enter the postfix expresion
+15 5 -
+Result:- 10
+
+Enter the postfix expresion
+2 7 + 5 + 7 * 6 3 / 8 2 - * + 3 9 + *
+Result:- 1320

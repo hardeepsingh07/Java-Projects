@@ -1,0 +1,112 @@
+// Written by Barry Soroka
+//
+// description of this program
+//
+import java.io.*;
+import java.util.Scanner;
+//////////////////////////////////////////////////////////////////////
+class Hw03
+{
+	public static int count = 0;
+ 	File filename=new File("Homework3");
+                     FileOutputStream fos=new FileOutputStream(filename);
+                     DataOutputStream dos=new DataOutputStream(mane);
+//--------------------------------------------------------------------
+   public static void main ( String [] args ) throws Exception
+   {
+	   Scanner kb = new Scanner(System.in);
+                    
+
+	   System.out.print("Enter Number of Disks: ");
+	   int n = kb.nextInt();
+	   doTowers(n, 'A', 'B', 'C');
+	   count++;
+	   System.out.println("No of steps : " + count);
+                     dos.writeChars("No of steps:"+count);
+   }
+   public static void doTowers(int n, char a, char b, char c)
+   {
+	   if (n == 1)
+	      System.out.println("Disk 1 from " + a + " to " + c);
+                        dos.writeChars("Disk 1 from "+a+" to "+c);
+	   else
+	   {
+	      doTowers(n - 1, a, c, b);
+	      System.out.println("Disk " + n + " from " + a + " to " + c);
+                        dos.writeChars("Disk "+n+" from "+a+" to "+c);
+	      count++;
+	      doTowers(n - 1, b, a, c);
+	      count++;
+	   }
+   }
+//--------------------------------------------------------------------
+} // end class Hw03
+//////////////////////////////////////////////////////////////////////
+
+Enter Number of Disks: 1
+Disk 1 from A to C
+No of steps : 1
+Enter Number of Disks: 2
+Disk 1 from A to B
+Disk 2 from A to C
+Disk 1 from B to C
+No of steps : 4
+Enter Number of Disks: 3
+Disk 1 from A to C
+Disk 2 from A to B
+Disk 1 from C to B
+Disk 3 from A to C
+Disk 1 from B to A
+Disk 2 from B to C
+Disk 1 from A to C
+No of steps : 11
+Enter Number of Disks: 4
+Disk 1 from A to B
+Disk 2 from A to C
+Disk 1 from B to C
+Disk 3 from A to B
+Disk 1 from C to A
+Disk 2 from C to B
+Disk 1 from A to B
+Disk 4 from A to C
+Disk 1 from B to C
+Disk 2 from B to A
+Disk 1 from C to A
+Disk 3 from B to C
+Disk 1 from A to B
+Disk 2 from A to C
+Disk 1 from B to C
+No of steps : 26
+Enter Number of Disks: 5
+Disk 1 from A to C
+Disk 2 from A to B
+Disk 1 from C to B
+Disk 3 from A to C
+Disk 1 from B to A
+Disk 2 from B to C
+Disk 1 from A to C
+Disk 4 from A to B
+Disk 1 from C to B
+Disk 2 from C to A
+Disk 1 from B to A
+Disk 3 from C to B
+Disk 1 from A to C
+Disk 2 from A to B
+Disk 1 from C to B
+Disk 5 from A to C
+Disk 1 from B to A
+Disk 2 from B to C
+Disk 1 from A to C
+Disk 3 from B to A
+Disk 1 from C to B
+Disk 2 from C to A
+Disk 1 from B to A
+Disk 4 from B to C
+Disk 1 from A to C
+Disk 2 from A to B
+Disk 1 from C to B
+Disk 3 from A to C
+Disk 1 from B to A
+Disk 2 from B to C
+Disk 1 from A to C
+No of steps : 57

@@ -1,0 +1,142 @@
+//Written by Hardeep Singh
+//
+//Writing a check in words.
+//
+import java.io.*;
+import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.FileWriter;
+//////////////////////////////////////////////////////////////////////
+class Hw04
+{
+//--------------------------------------------------------------------
+	public static void main ( String [] args ) throws Exception
+	{	
+		while(true)
+		{
+		try
+		{
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Enter your amount: ");
+		double amount = kb.nextDouble();
+		CheckCashing CC = new CheckCashing(amount);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Invalid Data");
+		}
+		}
+	}
+//--------------------------------------------------------------------
+} // end class Hw04
+//////////////////////////////////////////////////////////////////////
+class CheckCashing
+{
+ public double amount;
+ public int dollars;
+ public int cents;
+ public String [] digits = {"", "One","Two","Three","Four","Five",
+                    "Six","Seven","Eight","Nine"};
+ public String [] teens = {"","Ten","Eleven","Twelve","Thirteen","Fourteen",
+                     "Fifteen","Sixteen","Seventeen","Eighteen",
+                     "Ninteen"}; 
+ public String [] tens = {"","Twenty","Thirty","Fourty","Fifty","Sixty",
+                    "Seventy","Eighty", "Ninty" };
+//--------------------------------------------------------------------
+ public CheckCashing(double amount) throws IOException
+ {
+    this.amount = amount;   
+    dollars = (int)(amount);
+    cents = (int)((amount - dollars)*100);
+    BufferedWriter bw = new BufferedWriter(new FileWriter(new File("Amount.txt"),true));
+    bw.write("$" + amount + "   " + checks(dollars)+ " dollars and " + cents + " cents. \n");
+    bw.close();
+ }
+//--------------------------------------------------------------------
+ public String checks(int amount)
+ {
+    if(amount < 1)
+       return "";
+    if(amount < 10)
+       return(digits[amount]);
+    if(10 <= amount && amount < 20)
+       return(teens[(amount%10) + 1]);
+    if(20 <= amount && amount < 100)
+       return(tens[(amount/10) -1] + " " + digits[amount%10]);         
+    if(100 <= amount && amount < 1000)
+       return(digits[amount/100] + " Hundred " + checks(amount%100));
+    if(1000 <= amount && amount  < 10000)
+       return(checks(amount/1000) + " Thousand " + checks(amount%1000));
+    if(10000 <= amount && amount < 100000)
+       return(checks(amount/1000) + " Thousand " + checks(amount%1000));
+    if(100000 <= amount && amount < 1000000)
+       return(checks(amount/1000) + "" + checks(amount%10000));
+    return (digits[amount/1000000] + " Million");
+    
+ }  
+//--------------------------------------------------------------------
+} // end class CheckCashing
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+$6.89   Six dollars and 88 cents.
+
+$10.12   Ten dollars and 11 cents. 
+
+$34.78   Thirty Four dollars and 78 cents. 
+
+$90.0   Ninty  dollars and 0 cents. 
+
+$100.45   One Hundred  dollars and 45 cents. 
+$0.89    dollars and 89 cents. 
+
+$123.9   One Hundred Twenty Three dollars and 90 cents. 
+
+$200.45   Two Hundred  dollars and 44 cents. 
+
+$679.12   Six Hundred Seventy Nine dollars and 12 cents. 
+
+$9999.9   Nine Thousand Nine Hundred Ninty Nine dollars and 89 cents. 
+
+$1000.0   One Thousand  dollars and 0 cents. 
+
+$1100.78   One Thousand One Hundred  dollars and 77 cents. 
+
+$1203.9   One Thousand Two Hundred Three dollars and 90 cents. 
+
+$1300.0   One Thousand Three Hundred  dollars and 0 cents. 
+
+$2000.89   Two Thousand  dollars and 89 cents. 
+
+$3000.99   Three Thousand  dollars and 98 cents. 
+
+$3333.56   Three Thousand Three Hundred Thirty Three dollars and 55 cents. 
+
+$8892.23   Eight Thousand Eight Hundred Ninty Two dollars and 22 cents. 
+
+$9000.67   Nine Thousand  dollars and 67 cents. 
+
+$10000.45   Ten Thousand  dollars and 45 cents. 
+
+$10568.0   Ten Thousand Five Hundred Sixty Eight dollars and 0 cents. 
+
+$11890.56   Eleven Thousand Eight Hundred Ninty  dollars and 55 cents. 
+
+$17909.45   Seventeen Thousand Nine Hundred Nine dollars and 45 cents. 
+
+$20000.11   Twenty  Thousand  dollars and 11 cents. 
+
+$99999.44   Ninty Nine Thousand Nine Hundred Ninty Nine dollars and 44 cents. 
+
+$100000.78   One Hundred  dollars and 77 cents. 
+
+$200456.89   Two Hundred Four Hundred Fifty Six dollars and 89 cents. 
+
+$500000.88   Five Hundred  dollars and 88 cents. 
+
+$905777.89   Nine Hundred FiveFive Thousand Seven Hundred Seventy Seven dollars and 89 cents. 
+
+$1000000.0   One Million dollars and 0 cents. 
